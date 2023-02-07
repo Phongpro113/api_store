@@ -22,13 +22,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/login', [AuthController::class, 'login']);
-
-Route::post('login', [AuthController::class, 'login']);
+Route::get('/login', function () {
+    return view('welcome');
+})->name('login');
 
 Route::group([
     
     'prefix' => 'auth',
-    // 'middleware' => 'auth.guards.api'
+    'middleware' => ['auth:api']
     
 ], function ($router) {
     
